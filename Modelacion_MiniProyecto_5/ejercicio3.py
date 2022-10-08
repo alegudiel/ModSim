@@ -1,15 +1,28 @@
+import matplotlib.pyplot as plt
 import random
 import math
 
 U = random.random()
-Ui = 0
-Xi = 0
-for i in range(0,10):
-    if (i < 1):
-        Ui += U*0.4 + 0.6
-    elif (i > 1 and i <= 3):
-        Ui += U*0.5 + 0.1
-    elif (i > 3):
-        Ui += U*0.1
-    Xi = -math.log(Ui, math.e)
-    print(Xi)
+
+FirstInterval = 0
+SecondInterval = 0
+ThirdInterval = 0
+Lambda = 10
+ITERATIONS = 100
+result = 0
+
+def funcExp(result, lamVal):
+    return result - float((1/lamVal)*math.log(random.random()))
+
+for i in range(0, ITERATIONS):
+
+    result = funcExp(result, Lambda)
+
+    if (result < 1):
+        FirstInterval += result
+    elif (result > 1 and result <= 3):
+        SecondInterval += result
+    elif (result > 3):
+        ThirdInterval += result
+
+print((FirstInterval + SecondInterval + ThirdInterval)/ITERATIONS)
