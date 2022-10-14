@@ -1,3 +1,4 @@
+from cProfile import label
 import random
 import matplotlib.pyplot as plt
 import numpy as np
@@ -73,13 +74,14 @@ def simGame():
     # 50 juegos, con 1,000 iteraciones
     # 10,000 juegos, con 10 iteraciones
 
-    cantGames = 50
+    cantGames = 10000
     cantIter = 10
     resultados = []
     money = 0
-    bet = 0
+    bet = 1000
 
     for game in range(cantGames):
+        # xVal = list(range(1, cantIter+1))
         for iter in range(cantIter):
             number = random.randint(0, 1)
             tokenGame = random.randint(1, 100)
@@ -93,11 +95,16 @@ def simGame():
                     money += bet
                 else:
                     money -= bet
-    resultados = np.append(resultados, money)
+        resultados.append(money)
 
-    print("El dinero que tienes es de $", money)
-    print("Partidas jugadas: ", cantGames)
+    # print("El dinero que tienes es de $", money)
+    # print("Partidas jugadas: ", cantGames)
     
+    plt.plot(list(range(cantGames)) ,resultados, label="10000 juegos, 10 iteraciones")
+    plt.xlabel("Cantidad de juegos")
+    plt.ylabel("Dinero de cada juego")
+    plt.legend()
+    plt.show()
 
-mainGame()
-# simGame()
+# mainGame()
+simGame()
