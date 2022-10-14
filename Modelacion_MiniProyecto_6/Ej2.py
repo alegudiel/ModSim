@@ -81,7 +81,6 @@ def simGame():
     bet = 1000
 
     for game in range(cantGames):
-        # xVal = list(range(1, cantIter+1))
         for iter in range(cantIter):
             number = random.randint(0, 1)
             tokenGame = random.randint(1, 100)
