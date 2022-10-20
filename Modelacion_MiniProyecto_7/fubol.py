@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from fuzzy_expert.variable import FuzzyVariable
 from fuzzy_expert.rule import FuzzyRule
+from fuzzy_expert.inference import DecompositionalInference
 
 variables = {
     "positionUPDown": FuzzyVariable(
@@ -25,3 +26,40 @@ plt.figure(figsize=(10, 2.5))
 # variables["positionRight"].plot()
 # plt.show()
 
+rules = [
+    FuzzyRule(
+        premise=[
+            ("positionUPDown", "Up"),
+            ("AND", "positionRight", "Right"),
+        ],
+        consequence=[("decision", "MoveRight")],
+    ),
+    FuzzyRule(
+        premise=[
+            ("positionUPDown", "Down"),
+            ("AND", "positionRight", "Middle"),
+        ],
+        consequence=[("decision", "MoveLeft")],
+    )
+]
+
+print(rules[0])
+print()
+print(rules[1])
+
+
+# model = DecompositionalInference(
+#     and_operator="min",
+#     or_operator="max",
+#     implication_operator="Rc",
+#     composition_operator="max-min",
+#     production_link="max",
+#     defuzzification_operator="cog",
+# )
+
+# model(
+#     variables=variables,
+#     rules=rules,
+#     positionUPDown=103,
+#     positionRight=155,
+# )
