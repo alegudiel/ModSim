@@ -3,6 +3,12 @@ https://www.pygame.org/docs/ref/rect.html
 """
 
 import pygame
+import fuzzyMove 
+
+# Sequence for initialize values
+fuzzyMove.makeDecisionMovement(103, 155)
+fuzzyMove.seeGraphsOfVariables()
+print(fuzzyMove.returnValueOfDecision())
 
 class Game():
 
@@ -35,6 +41,10 @@ class Game():
         self.ballWidth = 10
         self.ballInitCord = (self.ballCoordX, self.ballCoordY)
         self.updateScene()
+
+    def seeGraphsOfVariables():
+        # To see variables, add a menu
+        fuzzyMove.seeGraphsOfVariables()
 
     def playerMovement(self):
         playerKey = pygame.key.get_pressed()
