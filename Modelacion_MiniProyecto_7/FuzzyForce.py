@@ -10,7 +10,7 @@ class Shooting(object):
 
     def __init__(self):
 
-        self.field = [64,100]
+        self.field = [200,200]
         self.x_goal = 0
         self.y_goal = self.field[0]/2
         self.ball_mass = 0.45
@@ -59,10 +59,10 @@ class Shooting(object):
         # timing.short.plot()
         # timing.long.plot()
 
-        # force.few.plot()
-        # force.huge.plot()
+        force.few.plot()
+        force.huge.plot()
 
-        # pyplot.show()
+        pyplot.show()
 
 
 
@@ -82,11 +82,15 @@ class Shooting(object):
         # rules(values)
         rules == R1 | R2 | R3 | R4 == sum([R1, R2, R3, R4])
         values = {dist_shooting: distance, timing: time}
+        # print("distance ->", distance)
+        # print("time ->", time)
 
         return rules(values)
         
 
-# Shot = Shooting()
-# finalForce = Shot.fuzzyForce([64,60], 5)
-# print(finalForce)
+Shot = Shooting()
+# PARAMETROS: Ingresan coordenadas [x, y] del balon / robot
+# y tiempo t que tarda el disparo en alcanzar la porteria
+finalForce = Shot.fuzzyForce([64,60], 5)
+print(finalForce)
 
