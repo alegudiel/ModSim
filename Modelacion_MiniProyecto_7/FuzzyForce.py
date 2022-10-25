@@ -4,7 +4,8 @@ from fuzzylogic.hedges import very
 from fuzzylogic.functions import R, S
 from fuzzylogic.functions import gauss
 import math
-pyplot.rc("figure", figsize=(10, 10))
+from skfuzzy import control as ctrl
+# pyplot.rc("figure", figsize=(10, 10))
 
 class Shooting(object):
 
@@ -57,12 +58,12 @@ class Shooting(object):
         # dist_shooting.far.plot()
 
         # timing.short.plot()
-        # timing.long.plot()
+        # # timing.long.plot()
 
-        force.few.plot()
-        force.huge.plot()
+        # force.few.plot()
+        # force.huge.plot()
 
-        pyplot.show()
+        # pyplot.show()
 
 
 
@@ -73,7 +74,7 @@ class Shooting(object):
 
 
 
-        rules = Rule({(dist_shooting.close,timing.short): force.huge,
+        rules = ctrl.Rule({(dist_shooting.close,timing.short): force.huge,
                 (dist_shooting.close, timing.long): force.few,
                 (dist_shooting.far, timing.short): force.huge,
                 (dist_shooting.far, timing.long): force.few
@@ -85,12 +86,17 @@ class Shooting(object):
         # print("distance ->", distance)
         # print("time ->", time)
 
-        return rules(values)
+        forceShot = ctrl.ControlSystem(rules)
+        forceShot = ctrl.ControlSystemSimulation(forceShot)
+        forceShot.input['Distance'] = distance
+        forceShot.input['Time'] = time
+        forceShot.compute()
+
+        return forceShot.output['Force']
         
 
-Shot = Shooting()
+# Shot = Shooting()
 # PARAMETROS: Ingresan coordenadas [x, y] del balon / robot
 # y tiempo t que tarda el disparo en alcanzar la porteria
-finalForce = Shot.fuzzyForce([64,60], 5)
-print(finalForce)
-
+# finalForce = Shot.fuzzyForce([64,60], 5)
+# print(finalForce)
