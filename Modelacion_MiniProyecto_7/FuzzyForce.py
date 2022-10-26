@@ -58,7 +58,7 @@ class Shooting(object):
         # dist_shooting.far.plot()
 
         # timing.short.plot()
-        # # timing.long.plot()
+        # timing.long.plot()
 
         # force.few.plot()
         # force.huge.plot()
@@ -74,7 +74,7 @@ class Shooting(object):
 
 
 
-        rules = ctrl.Rule({(dist_shooting.close,timing.short): force.huge,
+        rules = Rule({(dist_shooting.close,timing.short): force.huge,
                 (dist_shooting.close, timing.long): force.few,
                 (dist_shooting.far, timing.short): force.huge,
                 (dist_shooting.far, timing.long): force.few
@@ -86,17 +86,11 @@ class Shooting(object):
         # print("distance ->", distance)
         # print("time ->", time)
 
-        forceShot = ctrl.ControlSystem(rules)
-        forceShot = ctrl.ControlSystemSimulation(forceShot)
-        forceShot.input['Distance'] = distance
-        forceShot.input['Time'] = time
-        forceShot.compute()
-
-        return forceShot.output['Force']
+        return rules(values)
         
 
 # Shot = Shooting()
-# PARAMETROS: Ingresan coordenadas [x, y] del balon / robot
-# y tiempo t que tarda el disparo en alcanzar la porteria
+# # PARAMETROS: Ingresan coordenadas [x, y] del balon / robot
+# # y tiempo t que tarda el disparo en alcanzar la porteria
 # finalForce = Shot.fuzzyForce([64,60], 5)
 # print(finalForce)
