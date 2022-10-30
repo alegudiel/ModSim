@@ -27,7 +27,7 @@ def rankRoutes(population):
         fitnessResults[i] = Fitness(population[i]).routeFitness()
     return sorted(fitnessResults.items(), key = operator.itemgetter(1), reverse = True)
 
-
+# ----- SELECTION FUNCTION ----------------------------------------------------------------
 def selection(popRanked, eliteSize):
     selectionResults = []
     df = pd.DataFrame(np.array(popRanked), columns=["Index","Fitness"])
@@ -51,7 +51,9 @@ def matingPool(population, selectionResults):
         matingpool.append(population[index])
     return matingpool
 
-def breed(parent1, parent2):
+# ----- CROSSOVER FUNCTION ----------------------------------------------------------------
+
+def crossover(parent1, parent2):
     child = []
     childP1 = []
     childP2 = []
@@ -79,9 +81,11 @@ def breedPopulation(matingpool, eliteSize):
         children.append(matingpool[i])
     
     for i in range(0, length):
-        child = breed(pool[i], pool[len(matingpool)-i-1])
+        child = crossover(pool[i], pool[len(matingpool)-i-1])
         children.append(child)
     return children
+
+# ----- MUTATE FUNCTION ----------------------------------------------------------------
 
 def mutate(individual, mutationRate):
     for swapped in range(len(individual)):
@@ -112,6 +116,8 @@ def nextGeneration(currentGen, eliteSize, mutationRate):
     nextGeneration = mutatePopulation(children, mutationRate)
     return nextGeneration
 
+# ----- OBJECTIVE FUNCTION ----------------------------------------------------------------
+
 def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations):
     pop = initialPopulation(popSize, population)
     print("Initial distance: " + str(1 / rankRoutes(pop)[0][1]))
@@ -123,6 +129,9 @@ def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations):
     bestRouteIndex = rankRoutes(pop)[0][0]
     bestRoute = pop[bestRouteIndex]
     return bestRoute
+
+# ----- EXECUTION FUNCTION ----------------------------------------------------------------
+
 
 def geneticAlgorithmPlot(population, popSize, eliteSize, mutationRate, generations):
     pop = initialPopulation(popSize, population)
