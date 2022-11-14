@@ -2,31 +2,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import poisson
+from weather import *
 
 # Probability mass function
-def poissonMassFunction(k, mu):
-    k = np.arange(0, k)
+def poissonMassFunction(temp, hum, mu):
+    
+    makeDecisionWeather(temp, hum)
+    k = np.arange(0, 100)
     pmf = poisson.pmf(k, mu=mu)
     pmf = np.round(pmf, 5)
-    for value, prob in zip(k, pmf):
-        print(f"El estudiante no. {value} tiene probabilidad de comprar una bebida caliente de: {prob}")
-        print("--------------------------------------------")
+    pmf = pmf * returnValueOfDecision()
 
     plt.plot(k, pmf, marker='o')
-    plt.xlabel('k estudiantes')
+    plt.xlabel('K Students')
     plt.ylabel('Probability')
     plt.show()
-
-# Cumulative distribution function
-def poissonCumulativeFunction(k, mu):
-	k = np.arange(0, k)
-	cdf = poisson.cdf(k, mu=mu)
-	cdf = np.round(cdf, 5)
-
-	for value, prob in zip(k, cdf):
-		print(f"El estudiante no. {value} tiene probabilidad de comprar una bebida caliente de: {prob}")
-
-	plt.plot(k, cdf, marker='o')
-	plt.xlabel('k estudiantes')
-	plt.ylabel('Cumulative Probability')
-	plt.show()
+# De 6:30am a 7:30am temp=17, Humedad 68
+poissonMassFunction(17, 65, 40)
+# De 12:30pm a 1:30pm temp= 21, Humedad 51
+poissonMassFunction(25, 50, 40)
+# De 6:30pm a 7:30pm temp= 21, Humedad 45
+poissonMassFunction(19, 70, 40)
