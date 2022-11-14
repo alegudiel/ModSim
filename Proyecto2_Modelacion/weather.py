@@ -75,13 +75,13 @@ def seeGraphsOfVariables():
     variables["decision"].plot()
     plt.show()
 
-
+def seeGraphsOfDecision(temp, hum):
     plt.figure(figsize=(10, 6))
     model.plot(
         variables=variables,
         rules=rules,
-        weatherTemp=25,
-        weatherHumidity=30,
+        weatherTemp=temp,
+        weatherHumidity=hum,
     )
     plt.show()
 

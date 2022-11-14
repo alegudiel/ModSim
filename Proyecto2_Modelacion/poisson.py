@@ -23,3 +23,8 @@ poissonMassFunction(15, 71, 40)
 poissonMassFunction(25, 51, 40)
 # De 6:30pm a 7:30pm temp=21, Humedad 45
 poissonMassFunction(19, 70, 40)
+
+# seeGraphsOfVariables()
+# seeGraphsOfDecision(15, 71)
+# seeGraphsOfDecision(25, 51)
+# seeGraphsOfDecision(19, 70)
