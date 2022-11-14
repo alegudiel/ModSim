@@ -40,6 +40,7 @@ rules = [
         premise=[
             ("weatherTemp", "Cold"),
             ("AND", "weatherHumidity", "LowHumidity"),
+            ("OR", "weatherTemp", "Cold"),
         ],
         consequence=[("decision", "should_buy")],
     )
