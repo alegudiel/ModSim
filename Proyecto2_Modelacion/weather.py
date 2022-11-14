@@ -8,7 +8,7 @@ variables = {
         universe_range=(0, 50),
         terms={
             "Hot": [(0, 0), (23, 0), (35, 0.5), (40, 1), (45,1), (50, 0)],
-            "Cold": [(0, 0), (8, 0.8), (12, 1), (18, 1), (21, 0)],
+            "Cold": [(0, 0), (10, 0.8), (15, 1), (20, 1), (22, 0.3), (25, 0)],
         },
     ),
     "weatherHumidity": FuzzyVariable(
@@ -32,6 +32,7 @@ rules = [
         premise=[
             ("weatherTemp", "Hot"),
             ("AND", "weatherHumidity", "HighHumidity"),
+            ("OR", "weatherHumidity", "HighHumidity"),
         ],
         consequence=[("decision", "should_not_buy")],
     ),

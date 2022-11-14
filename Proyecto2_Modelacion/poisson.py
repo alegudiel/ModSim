@@ -18,8 +18,8 @@ def poissonMassFunction(temp, hum, mu):
     plt.ylabel('Probability')
     plt.show()
 # De 6:30am a 7:30am temp=17, Humedad 68
-poissonMassFunction(17, 65, 40)
-# De 12:30pm a 1:30pm temp= 21, Humedad 51
-poissonMassFunction(25, 50, 40)
-# De 6:30pm a 7:30pm temp= 21, Humedad 45
+poissonMassFunction(15, 71, 40)
+# De 12:30pm a 1:30pm temp=21, Humedad 51
+poissonMassFunction(25, 51, 40)
+# De 6:30pm a 7:30pm temp=21, Humedad 45
 poissonMassFunction(19, 70, 40)
