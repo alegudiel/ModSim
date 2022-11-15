@@ -16,4 +16,4 @@
 * https://www.canva.com/design/DAFQ8EwCrTI/Z2INpRFDFylXYzU1_JvUPA/view?utm_content=DAFQ8EwCrTI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## Video de la solución
-* 
+* https://youtu.be/FB77w8SsD6A
